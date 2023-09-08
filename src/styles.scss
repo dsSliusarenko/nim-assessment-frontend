@@ -1,4 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/app/styles/variables.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container-fluid {
+  background-color: $gray-main-background;
+}
+
+.container {
+  display: grid;
+  max-width: 1366px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.order {
+  height: 100vh;
+
+  &__header {
+    @include cardShadow;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    .title {
+      span {
+        font-size: large;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__overview {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1rem;
+
+    .menu-overview {
+      display: flex;
+      flex-direction: column;
+
+      width: 70%;
+      background-color: blueviolet;
+    }
+
+    .bill-overview {
+      width: 30%;
+      background-color: yellow;
+    }
+  }
+}
