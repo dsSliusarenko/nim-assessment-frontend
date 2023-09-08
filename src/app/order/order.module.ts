@@ -8,8 +8,8 @@ import {AngularMaterialModule} from "../angular-material/angular-material.module
     OrderComponent
   ],
   imports: [
-    CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    CommonModule
   ],
   exports: [
     OrderComponent
