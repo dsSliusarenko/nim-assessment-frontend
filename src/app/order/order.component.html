@@ -1,17 +1,85 @@
 <div class="order">
   <div class="order__header">
     <div class="title">
-      <span>Menu</span>
+      <span>New Idea Machine Café</span>
     </div>
   </div>
   <div class="order__overview">
     <div class="menu-overview" *ngIf="menu$ | async as menu">
-      <div class="test" *ngFor="let item of menu">
-        {{item.id}}
+      <div class="menu-overview__title">
+        <span>MENU</span>
+      </div>
+      <div class="overview">
+        <mat-card class="menu-item-card" *ngFor="let item of menu">
+          <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>{{item.name}}</mat-card-title>
+            <mat-card-subtitle>${{item.price}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image
+               ngSrc="https://images.unsplash.com/photo-1595295333158-4742f28fbd85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhc3RhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+               alt="Plate photo" height="90" width="110">
+          <mat-card-content>
+            <p>
+              {{item.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="buttons">
+              <button mat-button (click)="addToOrder(item)">ADD</button>
+              <button mat-raised-button color="warn" (click)="removeFromOrder(item)" [disabled]="!isItemInBill(item)">
+                REMOVE
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
     <div class="bill-overview">
-      bill
+      <div class="bill">
+        <div class="bill__title">
+          <span>YOUR ORDER</span>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-list role="list" *ngIf="bill.length > 0; else emptyOrder">
+          <ng-container *ngIf="bill.length > 0">
+            <mat-list-item role="listitem" *ngFor="let billItem of bill">
+              <div class="bill-item">
+                <div class="bill-item__name">
+                  {{billItem.name}}
+                </div>
+                <div class="bill-item__quantity">
+                  Quantity:
+                  <button mat-icon-button color="warn" (click)="decreaseBillItem(billItem)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  {{billItem.quantity}}
+                  <button mat-icon-button color="warn" (click)="addToOrder(billItem)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+                <div class="bill-item__price">
+                  ${{billItem.price}}
+                </div>
+              </div>
+            </mat-list-item>
+          </ng-container>
+        </mat-list>
+        <mat-divider></mat-divider>
+        <ng-template #emptyOrder>
+          <div class="empty-order">
+            <span>your bill is empty now</span>
+          </div>
+        </ng-template>
+        <div class="bill__bottom">
+          <span> TOTAL: ${{billTotalAmount}}.00</span>
+        </div>
+      </div>
+      <div class="buttons">
+        <button mat-fab extended color="warn" [disabled]="bill.length < 1">
+          Place order
+        </button>
+      </div>
     </div>
   </div>
 </div>

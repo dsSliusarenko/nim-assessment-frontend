@@ -1,4 +1,4 @@
-export interface Menu {
+export interface MenuItem {
   id?: string;
   v?: any;
   name: string;

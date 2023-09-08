@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {OrderComponent} from './order.component';
-import {AngularMaterialModule} from "../angular-material/angular-material.module";
+import {AngularMaterialModule} from "../ui/angular-material/angular-material.module";
+import {IconsModule} from "../ui/icons/icons.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +10,9 @@ import {AngularMaterialModule} from "../angular-material/angular-material.module
   ],
   imports: [
     AngularMaterialModule,
-    CommonModule
+    CommonModule,
+    NgOptimizedImage,
+    IconsModule
   ],
   exports: [
     OrderComponent

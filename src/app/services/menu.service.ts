@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Menu} from "./menu";
+import {MenuItem} from "./menuItem";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
@@ -13,8 +13,8 @@ export class MenuService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(): Observable<Menu[]> {
+  getAll(): Observable<MenuItem[]> {
     const url: string = MenuService.menuUrl();
-    return this.httpClient.get<Menu[]>(url);
+    return this.httpClient.get<MenuItem[]>(url);
   }
 }
