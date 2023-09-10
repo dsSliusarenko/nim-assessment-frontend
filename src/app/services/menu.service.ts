@@ -8,7 +8,7 @@ import {environment} from "../../environments/environment";
   providedIn: "root"
 })
 export class MenuService {
-  private static menuUrl = (): string => `${environment.apiUrl}/api/menu`;
+  private static menuUrl = (): string => `${environment.apiUrl}/menu`;
 
   constructor(private httpClient: HttpClient) {
   }

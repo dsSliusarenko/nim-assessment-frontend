@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="buttons">
-        <button mat-fab extended color="warn" [disabled]="bill.length < 1">
+        <button mat-fab extended color="warn" [disabled]="bill.length < 1" (click)="openDialog()">
           Place order
         </button>
       </div>

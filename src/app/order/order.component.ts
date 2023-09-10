@@ -3,6 +3,9 @@ import {MenuService} from "../services/menu.service";
 import {Observable} from "rxjs";
 import {MenuItem} from "../services/menuItem";
 import {BillItem} from "./BillItem";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogModule} from "../ui/dialog/dialog.module";
+import {DialogComponent} from "../ui/dialog/dialog.component";
 
 @Component({
   selector: 'nim-order',
@@ -15,7 +18,7 @@ export class OrderComponent implements OnInit {
   bill: BillItem[] = [];
   billTotalAmount: number = 0;
 
-  constructor(private menuService: MenuService) {
+  constructor(private menuService: MenuService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -78,5 +81,10 @@ export class OrderComponent implements OnInit {
     }
 
     this.calcTotalAmount();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe();
   }
 }
